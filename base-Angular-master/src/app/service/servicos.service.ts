@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'
+import { AlunoModel } from '../alunos/aluno.model';
 HttpClient
 Observable
+AlunoModel
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,21 @@ export class ServicosService {
   listarAlunos(): Observable<any> {
 
     return this.http.get(`${this.url}`)
+  }
+
+  Cadastrar(aluno: AlunoModel): Observable<any> {
+
+    return this.http.post(`${this.url}`, aluno)
+  }
+
+  Atualizar(id: any, aluno: AlunoModel): Observable<any> {
+
+    return this.http.put(`${this.url}`.concat(id), aluno)
+  }
+
+  Excluir(id: any) {
+
+return this.http.delete(`${this.url}`.concat(id))
   }
 
 }
